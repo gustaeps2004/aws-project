@@ -3,7 +3,49 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Web.API", "CRM.Web.API\CRM.Web.API.csproj", "{2C97B3F7-7303-4504-9147-71520DD4EB85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Web", "CRM.Web\CRM.Web.csproj", "{723CCD5E-DA11-4422-B8DD-34BFC1FA725D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Domain", "CRM.Domain\CRM.Domain.csproj", "{6663FBC5-FEC8-434D-AFFA-CCABFC05CDC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.ApplicationService", "CRM.Service\CRM.ApplicationService.csproj", "{13159F2D-A514-4FFB-A340-6D65721776F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Infra.Data", "CRM.Infra.Data\CRM.Infra.Data.csproj", "{94DACC94-86DD-4521-9F60-E6E7B5162899}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Infra.Ioc", "CRM.Infra.Ioc\CRM.Infra.Ioc.csproj", "{D8B2DB80-775F-4542-8951-36F14C9F1DCB}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C97B3F7-7303-4504-9147-71520DD4EB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C97B3F7-7303-4504-9147-71520DD4EB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C97B3F7-7303-4504-9147-71520DD4EB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C97B3F7-7303-4504-9147-71520DD4EB85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{723CCD5E-DA11-4422-B8DD-34BFC1FA725D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{723CCD5E-DA11-4422-B8DD-34BFC1FA725D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{723CCD5E-DA11-4422-B8DD-34BFC1FA725D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{723CCD5E-DA11-4422-B8DD-34BFC1FA725D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6663FBC5-FEC8-434D-AFFA-CCABFC05CDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6663FBC5-FEC8-434D-AFFA-CCABFC05CDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6663FBC5-FEC8-434D-AFFA-CCABFC05CDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6663FBC5-FEC8-434D-AFFA-CCABFC05CDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13159F2D-A514-4FFB-A340-6D65721776F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13159F2D-A514-4FFB-A340-6D65721776F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13159F2D-A514-4FFB-A340-6D65721776F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13159F2D-A514-4FFB-A340-6D65721776F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94DACC94-86DD-4521-9F60-E6E7B5162899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94DACC94-86DD-4521-9F60-E6E7B5162899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94DACC94-86DD-4521-9F60-E6E7B5162899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94DACC94-86DD-4521-9F60-E6E7B5162899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B2DB80-775F-4542-8951-36F14C9F1DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B2DB80-775F-4542-8951-36F14C9F1DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B2DB80-775F-4542-8951-36F14C9F1DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B2DB80-775F-4542-8951-36F14C9F1DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
