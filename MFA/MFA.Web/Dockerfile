@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["CRM.Web/CRM.Web.csproj", "CRM.Web/"]
-RUN dotnet restore "./CRM.Web/./CRM.Web.csproj"
+COPY ["MFA.Web/MFA.Web.csproj", "MFA.Web/"]
+RUN dotnet restore "./MFA.Web/./MFA.Web.csproj"
 COPY . .
-WORKDIR "/src/CRM.Web"
-RUN dotnet build "./CRM.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/MFA.Web"
+RUN dotnet build "./MFA.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./CRM.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./MFA.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CRM.Web.dll"]
+ENTRYPOINT ["dotnet", "MFA.Web.dll"]

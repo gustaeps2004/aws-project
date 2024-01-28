@@ -4,16 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>6aadc727-1c79-42b8-a130-533c59910d5e</UserSecretsId>
+    <UserSecretsId>7b7d8d69-bfa4-4327-ba1e-ef1f9cc88299</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CRM.Infra.Ioc\MFA.Infra.Ioc.csproj" />
   </ItemGroup>
 
 </Project>

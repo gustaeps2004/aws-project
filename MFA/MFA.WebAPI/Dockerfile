@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["CRM.Web.API/CRM.Web.API.csproj", "CRM.Web.API/"]
-RUN dotnet restore "./CRM.Web.API/./CRM.Web.API.csproj"
+COPY ["MFA.WebAPI/MFA.WebAPI.csproj", "MFA.WebAPI/"]
+RUN dotnet restore "./MFA.WebAPI/./MFA.WebAPI.csproj"
 COPY . .
-WORKDIR "/src/CRM.Web.API"
-RUN dotnet build "./CRM.Web.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/MFA.WebAPI"
+RUN dotnet build "./MFA.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./CRM.Web.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./MFA.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CRM.Web.API.dll"]
+ENTRYPOINT ["dotnet", "MFA.WebAPI.dll"]
