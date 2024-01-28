@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MFA.Application\MFA.Application.csproj" />
+    <ProjectReference Include="..\MFA.Domain\MFA.Domain.csproj" />
+    <ProjectReference Include="..\MFA.Infra.Data\MFA.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>
