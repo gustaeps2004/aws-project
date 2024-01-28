@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CRM.Infra.Ioc\CRM.Infra.Ioc.csproj" />
+    <ProjectReference Include="..\CRM.Infra.Ioc\MFA.Infra.Ioc.csproj" />
   </ItemGroup>
 
 </Project>

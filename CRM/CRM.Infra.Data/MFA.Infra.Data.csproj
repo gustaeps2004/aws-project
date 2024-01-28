@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CRM.Domain\CRM.Domain.csproj" />
+    <ProjectReference Include="..\CRM.Domain\MFA.Domain.csproj" />
   </ItemGroup>
 
 </Project>

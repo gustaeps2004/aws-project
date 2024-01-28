@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Web.API", "CRM.Web.API\CRM.Web.API.csproj", "{2C97B3F7-7303-4504-9147-71520DD4EB85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MFA.Web.API", "CRM.Web.API\MFA.Web.API.csproj", "{2C97B3F7-7303-4504-9147-71520DD4EB85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Web", "CRM.Web\CRM.Web.csproj", "{723CCD5E-DA11-4422-B8DD-34BFC1FA725D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MFA.Web", "CRM.Web\MFA.Web.csproj", "{723CCD5E-DA11-4422-B8DD-34BFC1FA725D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Domain", "CRM.Domain\CRM.Domain.csproj", "{6663FBC5-FEC8-434D-AFFA-CCABFC05CDC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MFA.Domain", "CRM.Domain\MFA.Domain.csproj", "{6663FBC5-FEC8-434D-AFFA-CCABFC05CDC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.ApplicationService", "CRM.Service\CRM.ApplicationService.csproj", "{13159F2D-A514-4FFB-A340-6D65721776F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MFA.ApplicationService", "CRM.Service\MFA.ApplicationService.csproj", "{13159F2D-A514-4FFB-A340-6D65721776F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Infra.Data", "CRM.Infra.Data\CRM.Infra.Data.csproj", "{94DACC94-86DD-4521-9F60-E6E7B5162899}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MFA.Infra.Data", "CRM.Infra.Data\MFA.Infra.Data.csproj", "{94DACC94-86DD-4521-9F60-E6E7B5162899}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Infra.Ioc", "CRM.Infra.Ioc\CRM.Infra.Ioc.csproj", "{D8B2DB80-775F-4542-8951-36F14C9F1DCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MFA.Infra.Ioc", "CRM.Infra.Ioc\MFA.Infra.Ioc.csproj", "{D8B2DB80-775F-4542-8951-36F14C9F1DCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
