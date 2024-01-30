@@ -7,4 +7,6 @@ CREATE TABLE cad.Collaborator(
 	Password VARCHAR(300) NOT NULL,
 	Situation INT NOT NULL,
 	FirstAccess bit NOT NULL,
+	InclusionDate DateTime NOT NULL,
+	SituationDate DateTime NOT NULL
 );
