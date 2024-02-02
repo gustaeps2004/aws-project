@@ -1,9 +1,9 @@
 ﻿using Dapper;
 using System.Data.SqlClient;
 
-namespace MFA.Infra.Data.Repositories.Base.SQLServer
+namespace MFA.Infra.Data.Repositories.Base
 {
-    public class SQLServerBaseRepository : ISQLServerBaseRepository
+    public class SQLServerBaseRepository
     {
         private readonly string _connectionString;
 
@@ -42,6 +42,7 @@ namespace MFA.Infra.Data.Repositories.Base.SQLServer
                 connection.Open();
                 var result = connection.Execute(query, parameters);
                 connection.Close();
+
                 return result;
             }
             catch (SqlException sqlEx)

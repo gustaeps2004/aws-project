@@ -1,4 +1,4 @@
-﻿using MFA.Infra.Data.Repositories.Base.SQLServer;
+﻿using MFA.Infra.Data.Repositories.Base;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MFA.Infra.Ioc
@@ -7,7 +7,7 @@ namespace MFA.Infra.Ioc
     {
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
-            services.AddTransient<ISQLServerBaseRepository, SQLServerBaseRepository>();
+            services.AddSingleton<SQLServerBaseRepository>();
 
             return services;
         }

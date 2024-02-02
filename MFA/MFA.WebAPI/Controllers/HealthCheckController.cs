@@ -11,13 +11,7 @@ namespace MFA.WebAPI.Controllers
         [HttpGet]
         public ActionResult HealthCheck()
         {
-            try
-            {
-                return Ok();
-            } catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
+            return Ok();
         }
     }
 }
