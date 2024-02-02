@@ -12,7 +12,7 @@ namespace MFA.Infra.Data.Repositories.Base
             _connectionString = Environment.GetEnvironmentVariable("SQL_SERVER_CONNECTION_STRING")!;
         }
 
-        public IQueryable<T> RawQueryResult<T>(string query, object? parameters) where T : class
+        public IQueryable<T> RawQueryResult<T>(string query, object? parameters = null) where T : class
         {
             try
             {
@@ -34,7 +34,7 @@ namespace MFA.Infra.Data.Repositories.Base
             }
         }
 
-        public int Execute(string query, object? parameters)
+        public int Execute(string query, object? parameters = null)
         {
             try
             {
