@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using MFA.Domain.Validation;
 using System.Data.SqlClient;
 
 namespace MFA.Infra.Data.Repositories.Base
@@ -23,11 +24,6 @@ namespace MFA.Infra.Data.Repositories.Base
 
                 return result.AsQueryable();
             }
-            catch (SqlException sqlEx)
-            {
-                throw new Exception("SQL error: " + sqlEx);
-
-            }
             catch (Exception ex)
             {
                 throw new Exception("Internal error: " + ex);
@@ -44,10 +40,6 @@ namespace MFA.Infra.Data.Repositories.Base
                 connection.Close();
 
                 return result;
-            }
-            catch (SqlException sqlEx)
-            {
-                throw new Exception("SQL error: " + sqlEx);
             }
             catch (Exception ex)
             {

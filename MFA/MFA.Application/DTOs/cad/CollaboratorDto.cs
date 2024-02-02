@@ -2,14 +2,14 @@
 
 namespace MFA.Application.DTOs.cad
 {
-    public record class CollaboratorDto
+    public record CollaboratorDto
     {
-        public string Name { get; set; }
-        public string FederalDocument { get; set; }
-        public DateTime Birthday { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public bool FirstAccess { get; set; }
-        public Situation Situation { get; set; }
+        public string Name { get; init; }
+        public string FederalDocument { get; init; }
+        public DateTime Birthday { get; init; }
+        public string Email { get; init; }
+        public string Password { get; init; }
+        public bool FirstAccess { get; init; }
+        public Situation Situation { get; init; }
     }
 }

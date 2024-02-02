@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MFA.Domain\MFA.Domain.csproj" />
+    <ProjectReference Include="..\MFA.Infra.Data\MFA.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>
