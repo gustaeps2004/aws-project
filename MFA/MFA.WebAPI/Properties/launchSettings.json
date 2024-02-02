@@ -14,7 +14,7 @@
       "environmentVariables": {
         "ASPNETCORE_HTTPS_PORTS": "8081",
         "ASPNETCORE_HTTP_PORTS": "8080",
-        "SQL_SERVER_CONNECTION_STRING": "Data Source=DESKTOP-DMROCBF;Initial Catalog=AUTH_MFA;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;"
+        "SQL_SERVER_CONNECTION_STRING": "Data Source=DESKTOP-DMROCBF;Initial Catalog=AUTH_MFA;Integrated Security=True;Connect Timeout=30;Encrypt=False;"
       },
       "publishAllPorts": true,
       "useSSL": true

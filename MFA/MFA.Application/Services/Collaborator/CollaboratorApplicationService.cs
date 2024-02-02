@@ -9,6 +9,7 @@ namespace MFA.Application.Services.Collaborator
     {
         public IEnumerable<Domain.Models.cad.Collaborator> GetAll()
         {
+            // apply filter here, when front is done
             return _collaboratorRepository.GetAll();
         }
 
