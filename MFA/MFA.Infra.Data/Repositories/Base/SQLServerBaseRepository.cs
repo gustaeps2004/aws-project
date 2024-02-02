@@ -17,7 +17,7 @@ namespace MFA.Infra.Data.Repositories.Base
         {
             try
             {
-                var connection = new SqlConnection(_connectionString);
+                using var connection = new SqlConnection(_connectionString);
                 connection.Open();
                 var result = connection.Query<T>(query, parameters);
                 connection.Close();
@@ -34,7 +34,7 @@ namespace MFA.Infra.Data.Repositories.Base
         {
             try
             {
-                var connection = new SqlConnection(_connectionString);
+                using var connection = new SqlConnection(_connectionString);
                 connection.Open();
                 var result = connection.Execute(query, parameters);
                 connection.Close();
