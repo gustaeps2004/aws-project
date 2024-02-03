@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDependencyInjection();
+builder.Services.AddDatabaseConfiguration();
 
 var app = builder.Build();
 
