@@ -1,4 +1,4 @@
-﻿using MFA.Domain.Enums;
+﻿using MFA.Domain.Extensions;
 
 namespace MFA.Application.DTOs.cad
 {
@@ -8,8 +8,22 @@ namespace MFA.Application.DTOs.cad
         public string FederalDocument { get; init; }
         public DateTime Birthday { get; init; }
         public string Email { get; init; }
-        public string Password { get; init; }
-        public bool FirstAccess { get; init; }
-        public Situation Situation { get; init; }
+
+
+        public List<string> Validate()
+        {
+            var listErros = new List<string>();
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrWhiteSpace(Name))
+                listErros.Add("Name can't be null or empty.");
+
+            if (!FederalDocument.ValidateCPF() && !FederalDocument.ValidateCNPJ())
+                listErros.Add("Invalid federal document.");
+
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrWhiteSpace(Email) || !Email.ValidateEmail())
+                listErros.Add("Invalid email.");
+
+            return listErros;
+        }
     }
 }
