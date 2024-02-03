@@ -1,3 +1,5 @@
+CREATE SCHEMA cad;
+
 CREATE TABLE cad.Collaborator(
 	Code Uniqueidentifier NOT NULL PRIMARY KEY,
 	Name Varchar(50) NOT NULL,
