@@ -1,4 +1,5 @@
-﻿using MFA.Application.Services.Collaborator;
+﻿using MFA.Application.Mapper;
+using MFA.Application.Services.Collaborator;
 using MFA.Domain.Models.cad;
 using MFA.Infra.Data.Repositories.Collaborator;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,8 @@ namespace MFA.Infra.Ioc
             services.AddTransient<ICollaboratorApplicationService, CollaboratorApplicationService>();
 
             #endregion
+
+            services.AddAutoMapper(typeof(DtoToDomainProfile));
 
             return services;
         }

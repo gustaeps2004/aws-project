@@ -4,5 +4,6 @@
     {
         IEnumerable<T> GetAll();
         T GetByCode(Guid code);
+        void Insert(T collaborator);
     }
 }

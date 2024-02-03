@@ -11,7 +11,7 @@ namespace MFA.Infra.Data.Repositories.Base
 
         public SQLServerBaseRepository(SQLServerContextEfCore contextEfCore)
         {
-            _connectionString = Environment.GetEnvironmentVariable("SQL_SERVER_CONNECTION_STRING")!;
+            _connectionString = Environment.GetEnvironmentVariable("SQL_SERVER_CONNECTION_STRING_DAPPER")!;
             _contextEfCore = contextEfCore;
         }
 
@@ -37,6 +37,7 @@ namespace MFA.Infra.Data.Repositories.Base
             try
             {
                 _contextEfCore.Add(entity);
+                _contextEfCore.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -49,6 +50,7 @@ namespace MFA.Infra.Data.Repositories.Base
             try
             {
                 _contextEfCore.Update(entity);
+                _contextEfCore.SaveChanges();
             }
             catch (Exception ex)
             {

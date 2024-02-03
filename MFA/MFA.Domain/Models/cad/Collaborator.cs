@@ -1,4 +1,5 @@
 ﻿using MFA.Domain.Models.Base;
+using MFA.Domain.Extensions;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MFA.Domain.Models.cad
@@ -12,6 +13,21 @@ namespace MFA.Domain.Models.cad
         public string Email { get; set; }
         public string Password { get; set; }
         public bool FirstAccess { get; set; }
-        
+
+        public void InitialInsert()
+        {
+            Code = Guid.NewGuid();
+            FirstAccess = true;
+            Password = StringExtensions.GeneratePassword();
+            Situation = Enums.Situation.Cadastrado;
+            InclusionDate = DateTime.Now;
+            SituationDate = DateTime.Now;
+        }
+
+        public void Inactivating()
+        {
+            Situation = Enums.Situation.Desativado;
+            SituationDate = DateTime.Now;
+        }
     }
 }

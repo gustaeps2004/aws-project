@@ -81,6 +81,18 @@ namespace MFA.Domain.Extensions
             return false;
         }
 
+        public static string GeneratePassword()
+        {
+            var password = string.Empty;
+
+            Random random = new Random();
+
+            for (int count = 0; count < 5; count++)
+                password += random.Next(1, 100000);
+
+            return password;
+        }
+
         public static string OnlyNumbers(this string strNumber)
         {
             return RegexNumbers().Replace(strNumber, "");
