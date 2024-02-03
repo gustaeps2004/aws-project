@@ -1,4 +1,4 @@
-﻿
+﻿using MFA.Application.DTOs.cad;
 using MFA.Domain.Validation;
 using MFA.Infra.Data.Repositories.Collaborator;
 
@@ -17,6 +17,14 @@ namespace MFA.Application.Services.Collaborator
         {
             var collaborator = _collaboratorRepository.GetByCode(code) ?? throw new MFAException("Collaborator not located.");
             return collaborator;
+        }
+
+        public void Insert(CollaboratorDto collaboratorDto)
+        {
+            var errorList = collaboratorDto.Validate();
+
+            if (errorList.Any())
+                throw new MFAException(string.Join(";", errorList));
         }
     }
 }

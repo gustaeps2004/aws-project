@@ -1,4 +1,5 @@
-﻿using MFA.Application.Services.Collaborator;
+﻿using MFA.Application.DTOs.cad;
+using MFA.Application.Services.Collaborator;
 using MFA.Domain.Models.cad;
 using MFA.Domain.Validation;
 using MFA.WebAPI.Controllers.Base;
@@ -11,7 +12,7 @@ namespace MFA.WebAPI.Controllers
     public class CollaboratorController(ICollaboratorApplicationService _collaboratorApplicationService) : BaseController
     {
         [HttpGet]
-        public ActionResult<IEnumerable<Collaborator>> GetAll()
+        public ActionResult<IEnumerable<Collaborator>> All()
         {
             try
             {
@@ -35,6 +36,24 @@ namespace MFA.WebAPI.Controllers
             {
                 var collaborators = _collaboratorApplicationService.GetByCode(code);
                 return Ok(collaborators);
+            }
+            catch (MFAException mfaEx)
+            {
+                return BadRequest(mfaEx.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Insert(CollaboratorDto collaboratorDto)
+        {
+            try
+            {
+                _collaboratorApplicationService.Insert(collaboratorDto);
+                return Created();
             }
             catch (MFAException mfaEx)
             {

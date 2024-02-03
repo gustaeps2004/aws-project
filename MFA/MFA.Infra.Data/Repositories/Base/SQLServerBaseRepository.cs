@@ -1,25 +1,27 @@
 ﻿using Dapper;
-using MFA.Domain.Validation;
 using System.Data.SqlClient;
+using static Dapper.SqlMapper;
 
 namespace MFA.Infra.Data.Repositories.Base
 {
-    public class SQLServerBaseRepository
+    public class SQLServerBaseRepository<T> where T : class
     {
         private readonly string _connectionString;
+        private readonly SQLServerContextEfCore _contextEfCore;
 
-        public SQLServerBaseRepository()
+        public SQLServerBaseRepository(SQLServerContextEfCore contextEfCore)
         {
             _connectionString = Environment.GetEnvironmentVariable("SQL_SERVER_CONNECTION_STRING")!;
+            _contextEfCore = contextEfCore;
         }
 
-        public IQueryable<T> RawQueryResult<T>(string query, object? parameters = null) where T : class
+        public IQueryable<TEntity> RawQueryResult<TEntity>(string query, object? parameters = null) where TEntity : class
         {
             try
             {
                 using var connection = new SqlConnection(_connectionString);
                 connection.Open();
-                var result = connection.Query<T>(query, parameters);
+                var result = connection.Query<TEntity>(query, parameters);
                 connection.Close();
 
                 return result.AsQueryable();
@@ -30,16 +32,23 @@ namespace MFA.Infra.Data.Repositories.Base
             }
         }
 
-        public int Execute(string query, object? parameters = null)
+        public void Insert(T entity)
         {
             try
             {
-                using var connection = new SqlConnection(_connectionString);
-                connection.Open();
-                var result = connection.Execute(query, parameters);
-                connection.Close();
+                _contextEfCore.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Internal error: " + ex);
+            }
+        }
 
-                return result;
+        public void Update(T entity)
+        {
+            try
+            {
+                _contextEfCore.Update(entity);
             }
             catch (Exception ex)
             {
