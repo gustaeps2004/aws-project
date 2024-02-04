@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MFA.Application.DTOs.cad;
+using MFA.Domain.Extensions;
 using MFA.Domain.Validation;
 using MFA.Infra.Data.Repositories.Collaborator;
 
@@ -21,16 +22,24 @@ namespace MFA.Application.Services.Collaborator
             return collaborator;
         }
 
-        public void Insert(CollaboratorDto collaboratorDto)
+        public Domain.Models.cad.Collaborator Insert(CollaboratorDto collaboratorDto)
         {
             var errorList = collaboratorDto.Validate();
             
             if (errorList.Any())
                 throw new MFAException(string.Join(";", errorList));
 
+            var isExist = _collaboratorRepository.GetByEmailAndFederalDocument(collaboratorDto.Email, collaboratorDto.FederalDocument.OnlyNumbers());
+
+            if (isExist is not null)
+                throw new MFAException("Collaborator already exist.");
+
             var collaborator = _mapper.Map<Domain.Models.cad.Collaborator>(collaboratorDto);
             collaborator.InitialInsert();
+
             _collaboratorRepository.Insert(collaborator);
+
+            return collaborator;
         }
     }
 }

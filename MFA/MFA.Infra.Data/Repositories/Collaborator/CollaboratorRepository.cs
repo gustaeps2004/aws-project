@@ -27,6 +27,23 @@ namespace MFA.Infra.Data.Repositories.Collaborator
             return RawQueryResult<Domain.Models.cad.Collaborator>(sql, new { Code = code }).FirstOrDefault();
         }
 
+        public Domain.Models.cad.Collaborator GetByEmailAndFederalDocument(string email, string federalDocument)
+        {
+            const string sql = @"DECLARE
+	                                @collabEmail VARCHAR(150) = @Email,
+	                                @collabFD VARCHAR(14) = @FederalDocument
+
+                                SELECT *
+                                FROM
+	                                cad.Collaborator WITH (NOLOCK)
+                                WHERE
+	                                Email = @collabEmail
+                                OR
+	                                FederalDocument = @collabFD";
+
+            return RawQueryResult<Domain.Models.cad.Collaborator>(sql, new { Email = email, FederalDocument = federalDocument }).FirstOrDefault();
+        }
+
         public void InsertCollaborator(Domain.Models.cad.Collaborator collaborator)
         {
             Insert(collaborator);

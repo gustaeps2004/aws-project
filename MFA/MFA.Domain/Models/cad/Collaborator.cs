@@ -22,6 +22,7 @@ namespace MFA.Domain.Models.cad
             Situation = Enums.Situation.Cadastrado;
             InclusionDate = DateTime.Now;
             SituationDate = DateTime.Now;
+            FederalDocument = FederalDocument.OnlyNumbers();
         }
 
         public void Inactivating()

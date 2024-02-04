@@ -6,6 +6,6 @@ namespace MFA.Application.Services.Collaborator
     {
         IEnumerable<Domain.Models.cad.Collaborator> GetAll();
         Domain.Models.cad.Collaborator GetByCode(Guid code);
-        void Insert(CollaboratorDto collaboratorDto);
+        Domain.Models.cad.Collaborator Insert(CollaboratorDto collaboratorDto);
     }
 }

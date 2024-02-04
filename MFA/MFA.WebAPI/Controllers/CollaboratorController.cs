@@ -52,8 +52,9 @@ namespace MFA.WebAPI.Controllers
         {
             try
             {
-                _collaboratorApplicationService.Insert(collaboratorDto);
-                return Created();
+                var collaborator = _collaboratorApplicationService.Insert(collaboratorDto);
+
+                return CreatedAtAction("Collaborator Created", collaborator);
             }
             catch (MFAException mfaEx)
             {
