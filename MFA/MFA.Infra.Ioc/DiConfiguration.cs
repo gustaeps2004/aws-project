@@ -1,4 +1,5 @@
 ﻿using MFA.Application.Mapper;
+using MFA.Application.Services.Authentication;
 using MFA.Application.Services.Collaborator;
 using MFA.Domain.Models.cad;
 using MFA.Infra.Data.Repositories.Collaborator;
@@ -15,6 +16,7 @@ namespace MFA.Infra.Ioc
 
             services.AddTransient<ICollaboratorRepository<Collaborator>, CollaboratorRepository>();
             services.AddTransient<ICollaboratorApplicationService, CollaboratorApplicationService>();
+            services.AddTransient<IAuthenticationApplicationServices, AuthenticationApplicationServices>();
 
             #endregion
 

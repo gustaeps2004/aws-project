@@ -1,5 +1,7 @@
 ﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
+using System.Linq.Expressions;
 using static Dapper.SqlMapper;
 
 namespace MFA.Infra.Data.Repositories.Base
@@ -32,6 +34,10 @@ namespace MFA.Infra.Data.Repositories.Base
             }
         }
 
+        public T SingleOrDefault(Expression<Func<T, bool>> predicate)
+        {
+            return _contextEfCore.Set<T>().AsNoTracking().SingleOrDefault(predicate);
+        }
         public void Insert(T entity)
         {
             try
