@@ -3,10 +3,12 @@ using MFA.Application.Services.Collaborator;
 using MFA.Domain.Models.cad;
 using MFA.Domain.Validation;
 using MFA.WebAPI.Controllers.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MFA.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/collaborator")]
     [ApiController]
     public class CollaboratorController(ICollaboratorApplicationService _collaboratorApplicationService) : BaseController

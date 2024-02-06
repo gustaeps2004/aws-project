@@ -44,6 +44,11 @@ namespace MFA.Infra.Data.Repositories.Collaborator
             return RawQueryResult<Domain.Models.cad.Collaborator>(sql, new { Email = email, FederalDocument = federalDocument }).FirstOrDefault();
         }
 
+        public Domain.Models.cad.Collaborator GetByEmailAndPassword(string email, string password)
+        {
+            return SingleOrDefault(collab => collab.Email.Equals(email) && collab.Password.Equals(password));
+        }
+
         public void InsertCollaborator(Domain.Models.cad.Collaborator collaborator)
         {
             Insert(collaborator);
