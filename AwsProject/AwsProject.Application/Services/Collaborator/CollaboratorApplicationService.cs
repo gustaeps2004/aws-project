@@ -3,11 +3,11 @@ using Amazon.S3;
 using Amazon.S3.Transfer;
 using AutoMapper;
 using AwsProject.Application.DTOs.AWS;
-using AwsProject.Application.DTOs.AWS.S3;
 using AwsProject.Application.DTOs.cad;
 using AwsProject.Domain.Extensions;
 using AwsProject.Domain.Validation;
 using AwsProject.Infra.Data.Repositories.Collaborator;
+using Microsoft.AspNetCore.Http;
 
 namespace AwsProject.Application.Services.Collaborator
 {
@@ -47,44 +47,45 @@ namespace AwsProject.Application.Services.Collaborator
             return collaborator;
         }
 
-        public S3Response Upload(S3Object s3Object, AwsCredentials awsCredentials)
+        public void FormFileToMemoryStream(IFormFile collaboratorFile)
         {
-            var credentials = new BasicAWSCredentials(awsCredentials.AwsKey, awsCredentials.AwsSecretKey);
+            using var ms = new MemoryStream();
+            collaboratorFile.CopyTo(ms);
 
-            var config = new AmazonS3Config()
-            {
-                RegionEndpoint = Amazon.RegionEndpoint.USEast1
-            };
+            var fileExtension = Path.GetExtension(collaboratorFile.FileName);
+            if (!fileExtension.Equals(".csv"))
+                throw new AwsProjectException("Incorrect file extension, just .csv!");
 
-            var response = new S3Response();
+            var fileName = $"{Path.GetFileNameWithoutExtension(collaboratorFile.FileName)}_{Guid.NewGuid()}.{fileExtension.WithoutSpecialCharacters()}";
+            UploadFileOnS3(ms, fileName);
+        }
 
+        private void UploadFileOnS3(MemoryStream ms, string fileName)
+        {
             try
             {
+                var credentials = new BasicAWSCredentials(AwsCredentials.AwsKey, AwsCredentials.AwsSecretKey);
+                var config = new AmazonS3Config()
+                {
+                    RegionEndpoint = Amazon.RegionEndpoint.USEast1
+                };
+
                 var uploadRequest = new TransferUtilityUploadRequest()
                 {
-                    InputStream = s3Object.InputStream,
-                    Key = s3Object.Name,
-                    BucketName = s3Object.BucketName,
+                    InputStream = ms,
+                    Key = $"{Environment.GetEnvironmentVariable("AWS_BUCKET_COLLABORATOR")}/initial/{fileName}",
+                    BucketName = Environment.GetEnvironmentVariable("AWS_BUCKET"),
                     CannedACL = S3CannedACL.NoACL
                 };
 
                 using var client = new AmazonS3Client(credentials, config);
-
                 var transferUtility = new TransferUtility(client);
-
                 transferUtility.Upload(uploadRequest);
-
-                response.StatusCode = 200;
-                response.Message = $"{s3Object.Name} has been uploaded succesfully.";
-
             }
             catch (AmazonS3Exception s3Ex)
             {
-                response.StatusCode = (int)s3Ex.StatusCode;
-                response.Message = s3Ex.Message;
+                throw new AwsProjectException(s3Ex.Message);
             }
-            
-            return response;
         }
     }
 }

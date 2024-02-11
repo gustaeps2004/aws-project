@@ -8,6 +8,9 @@ namespace AwsProject.Domain.Extensions
         [GeneratedRegex(@"[^\d]")]
         private static partial Regex RegexNumbers();
 
+        [GeneratedRegex(@"[^\w\s]")]
+        private static partial Regex RegexSpecialCharacters();
+
 
         public static bool ValidateCPF(this string cpf)
         {
@@ -96,6 +99,11 @@ namespace AwsProject.Domain.Extensions
         public static string OnlyNumbers(this string strNumber)
         {
             return RegexNumbers().Replace(strNumber, "");
+        }
+
+        public static string WithoutSpecialCharacters(this string str)
+        {
+            return RegexSpecialCharacters().Replace(str, "");
         }
     }
 }

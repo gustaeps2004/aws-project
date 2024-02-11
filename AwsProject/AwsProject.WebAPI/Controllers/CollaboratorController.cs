@@ -1,17 +1,14 @@
-﻿using AwsProject.Application.DTOs.AWS;
-using AwsProject.Application.DTOs.AWS.S3;
-using AwsProject.Application.DTOs.cad;
+﻿using AwsProject.Application.DTOs.cad;
 using AwsProject.Application.Services.Collaborator;
 using AwsProject.Domain.Models.cad;
 using AwsProject.Domain.Validation;
 using AwsProject.WebAPI.Controllers.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography.Xml;
 
 namespace AwsProject.WebAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/collaborator")]
     [ApiController]
     public class CollaboratorController(ICollaboratorApplicationService _collaboratorApplicationService) : BaseController
@@ -76,26 +73,7 @@ namespace AwsProject.WebAPI.Controllers
         {
             try
             {
-                using var memoryStream = new MemoryStream();
-                collaboratorFiles.CopyTo(memoryStream);
-
-                var fileExt = Path.GetExtension(collaboratorFiles.Name);
-                var objName = $"{Guid.NewGuid()}.{fileExt}";
-
-                var s3Object = new S3Object()
-                {
-                    BucketName = "aws-project-files",
-                    InputStream = memoryStream,
-                    Name = objName
-                };
-
-                var cred = new AwsCredentials()
-                {
-                    AwsKey = "AKIA2QDAFUJJE6JPZNOD",
-                    AwsSecretKey = "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"
-                };
-
-                _collaboratorApplicationService.Upload(s3Object, cred);
+                _collaboratorApplicationService.FormFileToMemoryStream(collaboratorFiles);
                 return Ok();
             }
             catch (AwsProjectException awsEx)

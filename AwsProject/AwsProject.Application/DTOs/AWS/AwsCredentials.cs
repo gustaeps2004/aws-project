@@ -2,8 +2,7 @@
 {
     public class AwsCredentials
     {
-        public string AwsKey { get; set; } = "";
-        public string AwsSecretKey { get; set; } = "";
-
+        public static string AwsKey = Environment.GetEnvironmentVariable("AWS_CREDENTIALS_ACCESS_KEY")!;
+        public static string AwsSecretKey = Environment.GetEnvironmentVariable("AWS_CREDENTIALS_SECRET_KEY")!;
     }
 }
