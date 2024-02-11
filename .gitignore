@@ -366,3 +366,4 @@ FodyWeavers.xsd
 /MFA/MFA.WebAPI/Properties/launchSettings.json
 /MFA/MFA.Web/package-lock.json
 /AwsProject/AwsProject.WebAPI/Properties/launchSettings.json
+/AwsProject/AwsProject.Lambda.Collaborator.ValidateFile/src/AwsProject.Lambda.Collaborator.ValidateFile/Properties/launchSettings.json
