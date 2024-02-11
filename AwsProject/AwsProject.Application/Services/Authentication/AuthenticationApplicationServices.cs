@@ -14,7 +14,7 @@ namespace AwsProject.Application.Services.Authentication
         {
             ValidateAccess(username, password);
 
-            var collaborator = _collaboratorRepository.GetByEmailAndPassword(username, password) ?? throw new MFAException("Invalid Access.");
+            var collaborator = _collaboratorRepository.GetByEmailAndPassword(username, password) ?? throw new AwsProjectException("Invalid Access.");
 
             var token = GenerateToken(collaborator);
             return token;
@@ -23,7 +23,7 @@ namespace AwsProject.Application.Services.Authentication
         private void ValidateAccess(string username, string password)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                throw new MFAException("Invalid Access.");
+                throw new AwsProjectException("Invalid Access.");
         }
 
         private TokenDto GenerateToken(Domain.Models.cad.Collaborator collaborator)

@@ -20,9 +20,9 @@ namespace AwsProject.WebAPI.Controllers
                 var token = _authenticateApplicationService.Access(username, password);
                 return Ok(token);
             }
-            catch (MFAException mfaEx)
+            catch (AwsProjectException awsEx)
             {
-                return BadRequest(mfaEx.Message);
+                return BadRequest(awsEx.Message);
             }
             catch (Exception ex)
             {
