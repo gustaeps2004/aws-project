@@ -365,3 +365,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /MFA/MFA.WebAPI/Properties/launchSettings.json
 /MFA/MFA.Web/package-lock.json
+/AwsProject/AwsProject.WebAPI/Properties/launchSettings.json
