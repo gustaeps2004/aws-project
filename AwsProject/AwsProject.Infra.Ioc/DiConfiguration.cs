@@ -3,6 +3,7 @@ using AwsProject.Application.Services.Authentication;
 using AwsProject.Application.Services.Collaborator;
 using AwsProject.Domain.Models.cad;
 using AwsProject.Infra.Data.Repositories.Collaborator;
+using AwsProject.Infra.Data.Repositories.CollaboratorFile;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AwsProject.Infra.Ioc
@@ -15,6 +16,7 @@ namespace AwsProject.Infra.Ioc
             #region TRANSIENT
 
             services.AddTransient<ICollaboratorRepository<Collaborator>, CollaboratorRepository>();
+            services.AddTransient<ICollaboratorFileRepository<CollaboratorFile>, CollaboratorFileRepository>();
             services.AddTransient<ICollaboratorApplicationService, CollaboratorApplicationService>();
             services.AddTransient<IAuthenticationApplicationServices, AuthenticationApplicationServices>();
 

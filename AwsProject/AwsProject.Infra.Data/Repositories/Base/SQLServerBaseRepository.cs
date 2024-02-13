@@ -38,6 +38,7 @@ namespace AwsProject.Infra.Data.Repositories.Base
         {
             return _contextEfCore.Set<T>().AsNoTracking().SingleOrDefault(predicate);
         }
+
         public void Insert(T entity)
         {
             try

@@ -4,15 +4,19 @@ using Amazon.S3.Transfer;
 using AutoMapper;
 using AwsProject.Application.DTOs.AWS;
 using AwsProject.Application.DTOs.cad;
+using AwsProject.Domain.Enums;
 using AwsProject.Domain.Extensions;
+using AwsProject.Domain.Models.cad;
 using AwsProject.Domain.Validation;
 using AwsProject.Infra.Data.Repositories.Collaborator;
+using AwsProject.Infra.Data.Repositories.CollaboratorFile;
 using Microsoft.AspNetCore.Http;
 
 namespace AwsProject.Application.Services.Collaborator
 {
     public class CollaboratorApplicationService(
         ICollaboratorRepository<Domain.Models.cad.Collaborator> _collaboratorRepository,
+        ICollaboratorFileRepository<CollaboratorFile> _collaboratorFileRepository,
         IMapper _mapper) : ICollaboratorApplicationService
     {
         public IEnumerable<Domain.Models.cad.Collaborator> GetAll()
@@ -47,17 +51,21 @@ namespace AwsProject.Application.Services.Collaborator
             return collaborator;
         }
 
-        public void FormFileToMemoryStream(IFormFile collaboratorFile)
+        public void FormFileToMemoryStream(IFormFile file)
         {
             using var ms = new MemoryStream();
-            collaboratorFile.CopyTo(ms);
+            file.CopyTo(ms);
 
-            var fileExtension = Path.GetExtension(collaboratorFile.FileName);
+            var fileExtension = Path.GetExtension(file.FileName);
             if (!fileExtension.Equals(".csv"))
                 throw new AwsProjectException("Incorrect file extension, just .csv!");
 
-            var fileName = $"{Path.GetFileNameWithoutExtension(collaboratorFile.FileName)}_{Guid.NewGuid()}.{fileExtension.WithoutSpecialCharacters()}";
+            var code = Guid.NewGuid();
+            var fileName = $"{Path.GetFileNameWithoutExtension(file.FileName)}_{code}.{fileExtension.WithoutSpecialCharacters()}";
             UploadFileOnS3(ms, fileName);
+
+            var pathFile = $"{Environment.GetEnvironmentVariable("AWS_BUCKET_COLLABORATOR")}/initial/{fileName}";
+            Insert(code, pathFile);
         }
 
         private void UploadFileOnS3(MemoryStream ms, string fileName)
@@ -86,6 +94,21 @@ namespace AwsProject.Application.Services.Collaborator
             {
                 throw new AwsProjectException(s3Ex.Message);
             }
+        }
+
+        private void Insert(Guid code, string pathFile)
+        {
+            var collaboratorFile = new CollaboratorFile()
+            {
+                Code = code,
+                PathFile = pathFile,
+                SituationMessage = SituacaoCollaboratorFile.Imported.GetDescription(),
+                Situation = SituacaoCollaboratorFile.Imported,
+                InclusionDate = DateTime.Now,
+                SituationDate = DateTime.Now
+            };
+
+            _collaboratorFileRepository.InsertCollaboratorFile(collaboratorFile);
         }
     }
 }

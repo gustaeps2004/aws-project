@@ -8,6 +8,6 @@ namespace AwsProject.Application.Services.Collaborator
         IEnumerable<Domain.Models.cad.Collaborator> GetAll();
         Domain.Models.cad.Collaborator GetByCode(Guid code);
         Domain.Models.cad.Collaborator Insert(CollaboratorDto collaboratorDto);
-        void FormFileToMemoryStream(IFormFile collaboratorFiles);
+        void FormFileToMemoryStream(IFormFile file);
     }
 }
