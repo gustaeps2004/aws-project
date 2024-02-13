@@ -5,7 +5,7 @@ namespace AwsProject.Lambda.Collaborator.ValidateFile
 {
     public class Function
     {
-        public string FunctionHandler(string input, ILambdaContext context)
+        public string Handler(string input, ILambdaContext context)
         {
             return input.ToUpper();
         }

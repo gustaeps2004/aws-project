@@ -12,5 +12,5 @@
   "function-runtime": "dotnet6",
   "function-memory-size": 256,
   "function-timeout": 30,
-  "function-handler": "AwsProject.Lambda.Collaborator.ValidateFile::AwsProject.Lambda.Collaborator.ValidateFile.Function::FunctionHandler"
+  "function-handler": "AwsProject.Lambda.Collaborator.ValidateFile::AwsProject.Lambda.Collaborator.ValidateFile.Function::Handler"
 }
